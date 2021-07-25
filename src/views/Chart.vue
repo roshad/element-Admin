@@ -1,14 +1,15 @@
 <template>
   <div class="chart-container">
-    <div id="chart" style="width: 600px;height:400px;" />
+    <div id="chart" style="width: 400px;height:400px;" />
   </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
-
+import resize from '../resize'
 export default {
   name: 'LineChart',
+  mixins: [resize],
   mounted() {
     this.initChart()
   },
