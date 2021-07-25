@@ -33,6 +33,7 @@ export const constantRoutes = [
     component: () => import('@/views/login/auth-redirect'),
     hidden: true
   },
+
   {
     path: '/404',
     component: () => import('@/views/error-page/404'),
@@ -46,13 +47,25 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/dashboard', // bc被点击时跳转
     children: [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: '首页', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/chart',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/Chart'),
+        name: 'index', // vea 有才会出现在tabs里，但内容无影响
+        meta: { title: 'Chart', icon: 'chart' } // bc与nav
       }
     ]
   }
@@ -170,11 +183,12 @@ export const errorRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 
