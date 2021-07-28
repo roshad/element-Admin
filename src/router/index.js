@@ -57,14 +57,15 @@ export const constantRoutes = [
       }
     ]
   },
+
   {
     path: '/chart',
     component: Layout,
     children: [
       {
         path: '',
-        component: () => import('@/views/Chart'),
-        name: 'index', // vea 有才会出现在tabs里，但内容无影响
+        component: () => import('@/views/chart/Chart'),
+        name: 'Chart', // vea 有才会出现在tabs里，但内容无影响
         meta: { title: 'Chart', icon: 'chart' } // bc与nav
       }
     ]
